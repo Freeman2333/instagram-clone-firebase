@@ -6,6 +6,7 @@ import { doesUsernameExist } from "../services/firebase";
 import { auth, db } from "../lib/firebase";
 import { useNavigate } from "react-router-dom";
 import * as ROUTES from '../constants/routes'
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const navigate = useNavigate()
@@ -122,6 +123,14 @@ const Signup = () => {
               Sign Up
             </button>
           </form>
+        </div>
+        <div className="flex justify-center items-center flex-col w-full bg-white p-4 rounded border border-gray-primary">
+          <p className="text-sm">
+            Have an account?{` `}
+            <Link to={ROUTES.LOGIN} className="font-bold text-blue-medium">
+              Login
+            </Link>
+          </p>
         </div>
       </div>
     </div>
