@@ -10,7 +10,6 @@ export default function useAuthListener() {
   useEffect(() => {
     onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
-        console.log(authUser);
         // We have a user...therefore we can store the user in localStorage
         localStorage.setItem("authUser", JSON.stringify(authUser));
         setUser(authUser);

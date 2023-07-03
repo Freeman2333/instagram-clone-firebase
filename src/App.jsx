@@ -5,6 +5,8 @@ import './App.css'
 import ReactLoader from "./components/loader";
 import useAuthListener from "./hooks/use-auth-listener";
 import ProtectedRoute from "./helpers/protected-route";
+import useUser from "./hooks/use-user";
+import ExtendedUserContext from './context/extended-user'
 
 const SignUp = lazy(() => import("./pages/sign-up"));
 const Dashboard = lazy(() => import("./pages/dashboard"));
@@ -28,11 +30,14 @@ const getRoutes = (user) => [
 
 function App() {
   const { user } = useAuthListener();
+  const { user: extendedUser, setActiveUser: setExtendedUser } = useUser(user?.uid);
 
   return (
     <BrowserRouter>
       <Suspense fallback={<ReactLoader />}>
-        <Routes>{getRoutes(user)}</Routes>
+        <ExtendedUserContext.Provider value={{ extendedUser, setExtendedUser }}>
+          <Routes>{getRoutes(user)}</Routes>
+        </ExtendedUserContext.Provider>
       </Suspense>
     </BrowserRouter>
   );
