@@ -43,7 +43,6 @@ const Suggestions = ({ userId, following, loggedInUserDocId }) => {
           />
         ))}
       </div>
-      Suggestions
     </div>
   );
 };
